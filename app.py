@@ -291,10 +291,4 @@ URL: {url_input}
     except requests.exceptions.HTTPError as e:
         st.error(f"페이지를 불러오지 못했습니다: {e}")
     except Exception as e:
-        error_msg = str(e)
-        if "API_KEY_INVALID" in error_msg or "invalid" in error_msg.lower():
-            st.error("API 키가 올바르지 않습니다. 관리자에게 문의하세요.")
-        elif "quota" in error_msg.lower() or "rate" in error_msg.lower():
-            st.error("API 요청 한도에 도달했습니다. 1분 후 다시 시도해주세요. (무료 플랜: 분당 15회 제한)")
-        else:
-            st.error(f"예상치 못한 오류가 발생했습니다: {e}")
+        st.error(f"오류 내용: {e}")
