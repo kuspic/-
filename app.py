@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import google.generativeai as genai
 import re
+import time
 from datetime import datetime
 
 # ── 페이지 설정 ──────────────────────────────────────────────────────────────
@@ -229,10 +230,12 @@ if generate_btn:
             st.write("🔍 소구점을 분석하고 있습니다...")
             appeal_result = run_appeal_analysis(model, page_text, url_input)
             st.write("✅ 소구점 분석 완료")
+            time.sleep(5)
 
             st.write("🎬 영상 광고 기획안을 작성하고 있습니다...")
             video_plan = run_video_plan(model, appeal_result)
             st.write("✅ 영상 광고 기획안 완료")
+            time.sleep(5)
 
             st.write("📋 제안서를 작성하고 있습니다...")
             proposal = run_proposal(model, appeal_result, video_plan)
@@ -292,6 +295,6 @@ URL: {url_input}
         if "API_KEY_INVALID" in error_msg or "invalid" in error_msg.lower():
             st.error("API 키가 올바르지 않습니다. 관리자에게 문의하세요.")
         elif "quota" in error_msg.lower() or "rate" in error_msg.lower():
-            st.error("API 요청 한도에 도달했습니다. 잠시 후 다시 시도해주세요.")
+            st.error("API 요청 한도에 도달했습니다. 1분 후 다시 시도해주세요. (무료 플랜: 분당 15회 제한)")
         else:
             st.error(f"예상치 못한 오류가 발생했습니다: {e}")
