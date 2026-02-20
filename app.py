@@ -62,7 +62,7 @@ def fetch_page(url: str) -> str:
 # ── Gemini 호출 함수들 ────────────────────────────────────────────────────────
 def ask(client, prompt: str) -> str:
     response = client.models.generate_content(
-        model="gemini-2.0-flash",
+        model="gemini-1.5-flash",",
         contents=prompt,
     )
     return response.text
