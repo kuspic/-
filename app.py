@@ -218,7 +218,7 @@ if generate_btn:
 
     # Gemini 클라이언트 초기화
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    model = genai.GenerativeModel("gemini-1.5-flash")
 
     try:
         with st.status("분석 진행 중...", expanded=True) as status:
